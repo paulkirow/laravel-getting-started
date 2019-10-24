@@ -21,6 +21,12 @@ Route::get('post/{id}', [
     'as' => 'blog.post'
 ]);
 
+Route::get('post/{id}/like', [
+    'uses' => 'PostController@getLikePost',
+    'as' => 'blog.post.like'
+]);
+
+
 Route::get('about', function () {
     return view('other.about');
 })->name('other.about');
@@ -49,5 +55,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('edit', [
         'uses' => 'PostController@postAdminUpdate',
         'as' => 'admin.update'
+    ]);
+    Route::get('delete/{id}', [
+        'uses' => 'PostController@getAdminDelete',
+        'as' => 'admin.delete'
     ]);
 });
